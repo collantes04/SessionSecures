@@ -16,14 +16,14 @@ public class PasswordGenerator {
     /*Do not change charset_size */
     private static final double CHARSET_SIZE = 91;
 
+    /**
+     * This method generates a random password
+     * from length passed in parameters and returns the password
+     * @param len the length you want the password to be
+     * @return generated password as String
+     * @throws IllegalArgumentException if the length is negative or less than eight
+     */
     public String generatorPassword(long len){
-        /*
-         * This method generates a random password
-         * from length passed in parameters and returns the password
-         * @param len the length you want the password to be
-         * @return generated password as String
-         * @throws IllegalArgumentException if the length is negative or less than eight
-         */
         
         if (len < 8) {
             throw new IllegalArgumentException("Length is negative or minor to eight");
@@ -69,19 +69,16 @@ public class PasswordGenerator {
         return password;
     }
 
-
+    /**
+     * calculates and return the years it will take
+     * for an attack to break the password
+     * that will tell how safe it is
+     *
+     * @param pass the password to analyze
+     * @return estimated time in seconds as BigDecimal
+     */
     public BigDecimal passwordCalculator(String pass){
-
-        /*
-         * calculates and return the years it will take
-         * for an attack to break the password
-         * that will tell how safe it is
-         *
-         * @param pass the password to analyze
-         * @return estimated time in seconds as BigDecimal
-         */
-
-
+        
         BigDecimal base = BigDecimal.valueOf(CHARSET_SIZE);
         BigDecimal combinations = base.pow(pass.length());
         
