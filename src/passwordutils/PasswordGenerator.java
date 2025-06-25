@@ -134,6 +134,16 @@ public class PasswordGenerator {
 
         return entropy;
     }
+    
+    /**
+     * Evaluates the security level of a password based on its calculated bit entropy.
+     *
+     * @param password The password to be evaluated.
+     * @return A string indicating the security level of the password:
+     *         "Low security" if entropy is less than 36 bits,
+     *         "Medium security" if entropy is between 36 and 59 bits (inclusive),
+     *         or "High security" if entropy is 60 bits or more.
+     */
 
     public String entropyScale(String password){
         BigDecimal entropy = bitEntropy(password);
