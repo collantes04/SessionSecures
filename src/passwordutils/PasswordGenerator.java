@@ -1,15 +1,15 @@
-package passwordgenerator;
+package passwordutils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
 
-import passwordgenerator.generators.LowercaseLetter;
-import passwordgenerator.generators.Symbol;
-import passwordgenerator.generators.UppercaseLetter;
+import passwordutils.generators.LowercaseLetter;
+import passwordutils.generators.Symbol;
+import passwordutils.generators.UppercaseLetter;
 
 public class PasswordGenerator {
-    /*attack attempts per second, the constant can be changed to cover the need for calculating
+    /*Attack attempts per second, the constant can be changed to cover the need for calculating
     the number of years needed to break the password*/
     private static final BigDecimal ATACK_ATTEMPTS = BigDecimal.valueOf(1000000);
 
@@ -85,5 +85,69 @@ public class PasswordGenerator {
         return combinations.divide(ATACK_ATTEMPTS, RoundingMode.HALF_UP);
     }
 
+    /**
+     * Analyzes the password passed by parameters under the criteria of:
+     * +8 length and at least one uppercase letter, one lowercase letter,
+     *  one symbol, and one number
+     * 
+     * @param password password to analyce
+     * @return boolean true or false if the password is secure
+     */
 
+    public boolean secureBreach(String password){
+        boolean hasLow = false;
+        boolean hasUp = false;
+        boolean hasSym = false;
+        boolean hasNum = false;
+        boolean state = false;
+
+
+        if (password.length() >= 8) {
+            for (char c : password.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    hasNum = true;
+                } else if(Character.isUpperCase(c)){
+                    hasUp = true;
+                } else if(Character.isLowerCase(c)){
+                    hasLow = true;
+                } else if(Symbol.isSymbol(c)){
+                    hasSym = true;
+                }
+            }
+        }
+
+        if (hasNum && hasSym && hasUp && hasLow) {
+            state = true;
+        }
+        
+        return state;
+    }
+
+
+    private BigDecimal bitEntropy(String password){
+        BigDecimal entropy = BigDecimal.ZERO;
+        BigDecimal passLength = BigDecimal.valueOf(password.length());
+
+        double log2x = Math.log(CHARSET_SIZE) / Math.log(2);
+
+        entropy = passLength.multiply(BigDecimal.valueOf(log2x));
+
+        return entropy;
+    }
+
+    public String entropyScale(String password){
+        BigDecimal entropy = bitEntropy(password);
+        String entropyString = "";
+        
+        if (entropy.compareTo(BigDecimal.valueOf(36)) < 0) {
+            entropyString = "Low";
+        } else if(entropy.compareTo(BigDecimal.valueOf(60)) < 0){
+            entropyString = "Medium";
+        } else {
+            entropyString = "High";
+        }
+
+
+        return String.format("%s security", entropyString);
+    }
 }

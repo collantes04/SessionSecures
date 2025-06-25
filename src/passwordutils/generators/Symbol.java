@@ -1,4 +1,4 @@
-package passwordgenerator.generators;
+package passwordutils.generators;
 
 import java.util.Random;
 
@@ -52,6 +52,17 @@ public enum Symbol {
             }
         }
         return returnedSym;
+    }
+
+    public static boolean isSymbol(char c){
+        boolean state = false;
+        for (Symbol sym : Symbol.values()) {
+            if (sym.getSymbol().equals(String.valueOf(c))) {
+                state = true;
+                break;
+            }
+        }
+        return state;
     }
 
     public int getKey() {
