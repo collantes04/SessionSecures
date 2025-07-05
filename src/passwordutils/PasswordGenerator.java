@@ -11,7 +11,7 @@ import passwordutils.generators.UppercaseLetter;
 public class PasswordGenerator {
     /*Attack attempts per second, the constant can be changed to cover the need for calculating
     the number of years needed to break the password*/
-    private static final BigDecimal ATACK_ATTEMPTS = BigDecimal.valueOf(1000000);
+    private static final BigDecimal ATACK_ATTEMPTS = BigDecimal.valueOf(1000000000);
 
     /*Do not change charset_size */
     private static final double CHARSET_SIZE = 91;
