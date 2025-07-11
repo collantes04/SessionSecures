@@ -3,10 +3,14 @@ package passwordutils;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
-
 import passwordutils.generators.LowercaseLetter;
 import passwordutils.generators.Symbol;
 import passwordutils.generators.UppercaseLetter;
+
+//Imports para SQLite
+import java.sql.*;
+//---------------------------------
+
 
 public class PasswordGenerator {
     /*Attack attempts per second, the constant can be changed to cover the need for calculating
@@ -15,6 +19,7 @@ public class PasswordGenerator {
 
     /*Do not change charset_size */
     private static final double CHARSET_SIZE = 91;
+
 
     /**
      * This method generates a random password
@@ -157,7 +162,33 @@ public class PasswordGenerator {
             entropyString = "High";
         }
 
-
         return String.format("%s security", entropyString);
     }
+
+
+
+    public boolean isLeaked(String password) {
+        String url = "jdbc:sqlite:my-database.sqlite"; // pon aquí la ruta real al archivo
+        String sql = "SELECT word FROM words WHERE word = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, password);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                // palabra encontrada
+                return true;
+            } else {
+                // no encontrada
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
