@@ -181,7 +181,7 @@ public class PasswordGenerator {
     
 
      /**
-     * calculates and return the years it will take
+     * Calculates and return the years it will take
      * for an attack to break the password
      * that will tell how safe it is
      *
@@ -194,7 +194,7 @@ public class PasswordGenerator {
     }
 
      /**
-     * calculates and return the date it will take
+     * Calculates and return the date it will take
      * for an attack to break the password
      * that will tell how safe it is
      *
