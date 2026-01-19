@@ -5,12 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.Time;
 import java.util.Random;
 import passwordutils.generators.LowercaseLetter;
 import passwordutils.generators.Symbol;
 import passwordutils.generators.UppercaseLetter;
-import passwordutils.TimeUtils;
 
 
 public class PasswordGenerator {
