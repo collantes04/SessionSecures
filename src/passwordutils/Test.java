@@ -14,6 +14,7 @@ public class Test {
         } else {
             System.out.println("Not leaked");
         }*/
-       gen.calculateInYears(sc.nextLine());
+
+       System.out.println(gen.entropyScale(sc.nextLine()));
     }
 }

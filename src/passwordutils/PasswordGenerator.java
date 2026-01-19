@@ -75,7 +75,7 @@ public class PasswordGenerator {
 
    
     private BigDecimal passwordCalculator(String pass){
-        
+        /*segundos*/
         BigDecimal base = BigDecimal.valueOf(CHARSET_SIZE);
         BigDecimal combinations = base.pow(pass.length());
         
@@ -147,14 +147,14 @@ public class PasswordGenerator {
         String entropyString = "";
         
         if (entropy.compareTo(BigDecimal.valueOf(36)) < 0) {
-            entropyString = "Low";
+            entropyString = "" + this.passwordCalculator(password) + " seconds"; //in seconds 
         } else if(entropy.compareTo(BigDecimal.valueOf(60)) < 0){
-            entropyString = "Medium";
+            entropyString = "" + this.calculateInYears(password); //
         } else {
-            entropyString = "High";
+            entropyString = "> 1.000.000 years";
         }
 
-        return String.format("%s security", entropyString);
+        return String.format(entropyString);
     }
 
 
@@ -186,9 +186,9 @@ public class PasswordGenerator {
      * @param pass the password to analyze
      * @return estimated time in seconds as BigDecimal
      */
-    public void calculateInYears(String password){
+    private String calculateInYears(String password){
         BigDecimal yearsToBreak = passwordCalculator(password);
-        System.out.println(TimeUtils.formatYearTime(yearsToBreak));
+        return TimeUtils.formatYearTime(yearsToBreak);
     }
 
      /**
@@ -199,9 +199,9 @@ public class PasswordGenerator {
      * @param pass the password to analyze
      * @return estimated time in seconds as BigDecimal
      */
-    public void calculateInDate(String password){
+    public String calculateInDate(String password){
         BigDecimal yearsToBreak = passwordCalculator(password);
-        System.out.println(TimeUtils.formatYearTime(yearsToBreak));
+        return TimeUtils.formatYearTime(yearsToBreak);
     }
     
     
