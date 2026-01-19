@@ -5,10 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Time;
 import java.util.Random;
 import passwordutils.generators.LowercaseLetter;
 import passwordutils.generators.Symbol;
 import passwordutils.generators.UppercaseLetter;
+import passwordutils.TimeUtils;
 
 
 public class PasswordGenerator {
@@ -73,15 +75,8 @@ public class PasswordGenerator {
         return password;
     }
 
-    /**
-     * calculates and return the years it will take
-     * for an attack to break the password
-     * that will tell how safe it is
-     *
-     * @param pass the password to analyze
-     * @return estimated time in seconds as BigDecimal
-     */
-    public BigDecimal passwordCalculator(String pass){
+   
+    private BigDecimal passwordCalculator(String pass){
         
         BigDecimal base = BigDecimal.valueOf(CHARSET_SIZE);
         BigDecimal combinations = base.pow(pass.length());
@@ -184,6 +179,32 @@ public class PasswordGenerator {
         return state;
     }
     
+
+     /**
+     * calculates and return the years it will take
+     * for an attack to break the password
+     * that will tell how safe it is
+     *
+     * @param pass the password to analyze
+     * @return estimated time in seconds as BigDecimal
+     */
+    public void calculateInYears(String password){
+        BigDecimal yearsToBreak = passwordCalculator(password);
+        System.out.println(TimeUtils.formatYearTime(yearsToBreak));
+    }
+
+     /**
+     * calculates and return the date it will take
+     * for an attack to break the password
+     * that will tell how safe it is
+     *
+     * @param pass the password to analyze
+     * @return estimated time in seconds as BigDecimal
+     */
+    public void calculateInDate(String password){
+        BigDecimal yearsToBreak = passwordCalculator(password);
+        System.out.println(TimeUtils.formatYearTime(yearsToBreak));
+    }
     
     
 }

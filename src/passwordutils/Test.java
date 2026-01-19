@@ -9,10 +9,11 @@ public class Test {
 
         
 
-        if (gen.isLeaked(sc.nextLine())) {
+        /*if (gen.isLeaked(sc.nextLine())) {
             System.out.println("IS LEAKED");
         } else {
             System.out.println("Not leaked");
-        }
+        }*/
+       gen.calculateInYears(sc.nextLine());
     }
 }
