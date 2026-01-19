@@ -1,15 +1,14 @@
 package passwordutils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
 import passwordutils.generators.LowercaseLetter;
 import passwordutils.generators.Symbol;
 import passwordutils.generators.UppercaseLetter;
-
-//Imports para SQLite
-import java.sql.*;
-//---------------------------------
 
 
 public class PasswordGenerator {
@@ -168,27 +167,23 @@ public class PasswordGenerator {
 
 
     public boolean isLeaked(String password) {
-        String url = "jdbc:sqlite:my-database.sqlite"; // pon aquí la ruta real al archivo
-        String sql = "SELECT word FROM words WHERE word = ?";
+        String url = "src/passwordutils/passwords.txt";
+        String line = "";
+        boolean state = false;
 
-        try (Connection conn = DriverManager.getConnection(url);
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, password);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                // palabra encontrada
-                return true;
-            } else {
-                // no encontrada
-                return false;
+        try(BufferedReader br = new BufferedReader(new FileReader(url))) {
+            while ((line = br.readLine()) != null) {
+                if (password.equals(line)) {
+                    state = true;
+                }
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+        } catch (IOException e) {
+           System.err.println(e.getMessage());
         }
-    }
 
+        return state;
+    }
+    
+    
+    
 }
