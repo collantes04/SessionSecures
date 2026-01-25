@@ -7,14 +7,6 @@ public class Test {
         PasswordGenerator gen = new PasswordGenerator();
         Scanner sc = new Scanner(System.in);
 
-        
-
-        /*if (gen.isLeaked(sc.nextLine())) {
-            System.out.println("IS LEAKED");
-        } else {
-            System.out.println("Not leaked");
-        }*/
-
        System.out.println(gen.entropyScale(sc.nextLine()));
        System.out.println(gen.entropyScaleUtil(sc.nextLine()));
     }
