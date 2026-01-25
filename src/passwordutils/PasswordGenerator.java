@@ -75,12 +75,15 @@ public class PasswordGenerator {
 
    
     private BigDecimal passwordCalculator(String pass){
-        /*segundos*/
         BigDecimal base = BigDecimal.valueOf(CHARSET_SIZE);
         BigDecimal combinations = base.pow(pass.length());
-        
-        return combinations.divide(ATACK_ATTEMPTS, RoundingMode.HALF_UP);
+
+        // tiempo esperado
+        combinations = combinations.divide(BigDecimal.valueOf(2), RoundingMode.HALF_UP);
+
+        return combinations.divide(ATACK_ATTEMPTS, RoundingMode.HALF_UP); // segundos
     }
+
 
     /**
      * Analyzes the password passed by parameters under the criteria of:
@@ -144,17 +147,48 @@ public class PasswordGenerator {
 
     public String entropyScale(String password){
         BigDecimal entropy = bitEntropy(password);
-        String entropyString = "";
-        
+        String returned = "";
+
         if (entropy.compareTo(BigDecimal.valueOf(36)) < 0) {
-            entropyString = "" + this.passwordCalculator(password) + " seconds"; //in seconds 
-        } else if(entropy.compareTo(BigDecimal.valueOf(60)) < 0){
-            entropyString = "" + this.calculateInYears(password); //
-        } else {
-            entropyString = "> 1.000.000 years";
+            returned = passwordCalculator(password) + " seconds (Low security)";
+        } 
+        else if (entropy.compareTo(BigDecimal.valueOf(60)) < 0) {
+            returned = calculateInYears(password) + " aprox " + " (Medium security)";
+        } 
+        else {
+            returned = "High security (more or less 1,000,000 years)";
         }
 
-        return String.format(entropyString);
+        return returned;
+    }
+
+
+        /**
+     * Evaluates the security level of a password based on its calculated bit entropy.
+     *
+     * @param password The password to be evaluated.
+     * @return A string indicating the security level of the password:
+     *         "Low security" if entropy is less than 36 bits it return character -1,
+     *         "Medium security" if entropy is between 36 and 59 bits (inclusive) it returns character 0,
+     *         or "High security" if entropy is 60 bits or more it return character 1.
+     * 
+     * This utility indicates the entropy of a password based on a char value,
+     *  which is most useful for use in custom password validation systems.
+     */
+
+    public int entropyScaleUtil(String password){
+        BigDecimal entropy = bitEntropy(password);
+        int entropyInt;
+        
+        if (entropy.compareTo(BigDecimal.valueOf(36)) < 0) {
+            entropyInt = -1; //in seconds 
+        } else if(entropy.compareTo(BigDecimal.valueOf(60)) < 0){
+            entropyInt = '0'; //
+        } else {
+            entropyInt = '1';
+        }
+
+        return entropyInt;
     }
 
 

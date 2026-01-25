@@ -17,7 +17,7 @@ public final class TimeUtils {
         BigDecimal secondsInYear = BigDecimal.valueOf(60L * 60L * 24L * 365L);
         BigDecimal years = time.divide(secondsInYear, 2, RoundingMode.HALF_UP);
         
-        return years.setScale(2, RoundingMode.HALF_UP).toPlainString() + " years to break this password";
+        return years.setScale(2, RoundingMode.HALF_UP).toPlainString() + " years";
     }
 
     /**
