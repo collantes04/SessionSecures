@@ -16,5 +16,6 @@ public class Test {
         }*/
 
        System.out.println(gen.entropyScale(sc.nextLine()));
+       System.out.println(gen.entropyScaleUtil(sc.nextLine()));
     }
 }

@@ -183,9 +183,9 @@ public class PasswordGenerator {
         if (entropy.compareTo(BigDecimal.valueOf(36)) < 0) {
             entropyInt = -1; //in seconds 
         } else if(entropy.compareTo(BigDecimal.valueOf(60)) < 0){
-            entropyInt = '0'; //
+            entropyInt = 0; //
         } else {
-            entropyInt = '1';
+            entropyInt = 1;
         }
 
         return entropyInt;
