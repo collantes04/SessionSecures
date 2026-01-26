@@ -4,32 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
-import passwordutils.TimeUtils;
 import passwordutils.datasources.Symbol;
 
-
-public class PasswordSecurityTools {
-
-    /*Attack attempts per second, the constant can be changed to cover the need for calculating
-    the number of years needed to break the password*/
-    private static final BigDecimal ATACK_ATTEMPTS = BigDecimal.valueOf(1000000000);
-
-    /*Do not change charset_size */
-    private static final double CHARSET_SIZE = 91;
-
-
-   
-    private BigDecimal passwordCalculator(String pass){
-        BigDecimal base = BigDecimal.valueOf(CHARSET_SIZE);
-        BigDecimal combinations = base.pow(pass.length());
-
-        // tiempo esperado
-        combinations = combinations.divide(BigDecimal.valueOf(2), RoundingMode.HALF_UP);
-
-        return combinations.divide(ATACK_ATTEMPTS, RoundingMode.HALF_UP); // segundos
-    }
+public class StrengthTools {
+    private final EntropyTools entropyTool = new EntropyTools();
 
 
     /**
@@ -40,14 +19,12 @@ public class PasswordSecurityTools {
      * @param password password to analyce
      * @return boolean true or false if the password is secure
      */
-
     public boolean secureBreach(String password){
         boolean hasLow = false;
         boolean hasUp = false;
         boolean hasSym = false;
         boolean hasNum = false;
         boolean state = false;
-
 
         if (password.length() >= 8) {
             for (char c : password.toCharArray()) {
@@ -66,22 +43,11 @@ public class PasswordSecurityTools {
         if (hasNum && hasSym && hasUp && hasLow) {
             state = true;
         }
-        
+
         return state;
     }
 
 
-    private BigDecimal bitEntropy(String password){
-        BigDecimal entropy = BigDecimal.ZERO;
-        BigDecimal passLength = BigDecimal.valueOf(password.length());
-
-        double log2x = Math.log(CHARSET_SIZE) / Math.log(2);
-
-        entropy = passLength.multiply(BigDecimal.valueOf(log2x));
-
-        return entropy;
-    }
-    
     /**
      * Evaluates the security level of a password based on its calculated bit entropy.
      *
@@ -91,16 +57,17 @@ public class PasswordSecurityTools {
      *         "Medium security" if entropy is between 36 and 59 bits (inclusive),
      *         or "High security" if entropy is 60 bits or more.
      */
-
     public String entropyScale(String password){
-        BigDecimal entropy = bitEntropy(password);
+        BigDecimal entropy = entropyTool.bitEntropy(password);
         String returned = "";
 
         if (entropy.compareTo(BigDecimal.valueOf(36)) < 0) {
-            returned = passwordCalculator(password) + " seconds (Low security)";
+            returned = entropyTool.passwordCalculator(password)
+                    + " seconds (Low security)";
         } 
         else if (entropy.compareTo(BigDecimal.valueOf(60)) < 0) {
-            returned = calculateInYears(password) + " aprox " + " (Medium security)";
+            returned = entropyTool.calculateInYears(password)
+                    + " aprox  (Medium security)";
         } 
         else {
             returned = "High security (more or less 1,000,000 years)";
@@ -110,7 +77,7 @@ public class PasswordSecurityTools {
     }
 
 
-        /**
+    /**
      * Evaluates the security level of a password based on its calculated bit entropy.
      *
      * @param password The password to be evaluated.
@@ -122,11 +89,10 @@ public class PasswordSecurityTools {
      * This utility indicates the entropy of a password based on a char value,
      *  which is most useful for use in custom password validation systems.
      */
-
     public int entropyScaleUtil(String password){
-        BigDecimal entropy = bitEntropy(password);
+        BigDecimal entropy = entropyTool.bitEntropy(password);
         int entropyInt;
-        
+
         if (entropy.compareTo(BigDecimal.valueOf(36)) < 0) {
             entropyInt = -1; //in seconds 
         } else if(entropy.compareTo(BigDecimal.valueOf(60)) < 0){
@@ -137,7 +103,6 @@ public class PasswordSecurityTools {
 
         return entropyInt;
     }
-
 
 
     public boolean isLeaked(String password) {
@@ -157,33 +122,5 @@ public class PasswordSecurityTools {
 
         return state;
     }
-    
 
-     /**
-     * Calculates and return the years it will take
-     * for an attack to break the password
-     * that will tell how safe it is
-     *
-     * @param pass the password to analyze
-     * @return estimated time in seconds as BigDecimal
-     */
-    private String calculateInYears(String password){
-        BigDecimal yearsToBreak = passwordCalculator(password);
-        return TimeUtils.formatYearTime(yearsToBreak);
-    }
-
-     /**
-     * Calculates and return the date it will take
-     * for an attack to break the password
-     * that will tell how safe it is
-     *
-     * @param pass the password to analyze
-     * @return estimated time in seconds as BigDecimal
-     */
-    public String calculateInDate(String password){
-        BigDecimal yearsToBreak = passwordCalculator(password);
-        return TimeUtils.formatYearTime(yearsToBreak);
-    }
-    
-    
 }
