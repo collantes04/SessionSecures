@@ -1,6 +1,6 @@
 package passwordutils.datasources;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 import passwordutils.datasources.UppercaseLetter;
 
@@ -32,7 +32,7 @@ public enum UppercaseLetter {
     Y(24, "Y"),
     Z(25, "Z");
 
-    private static final Random RAND = new Random();
+    private static final SecureRandom RAND = new SecureRandom();
     private int key;
     private String letter;
 

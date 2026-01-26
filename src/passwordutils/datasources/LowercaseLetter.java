@@ -1,6 +1,6 @@
 package passwordutils.datasources;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 import passwordutils.datasources.LowercaseLetter;
 
@@ -32,7 +32,7 @@ public enum LowercaseLetter {
     y(24, "y"),
     z(25, "z");
 
-    private static final Random RAND = new Random();
+    private static final SecureRandom RAND = new SecureRandom();
     private int key;
     private String letter;
 

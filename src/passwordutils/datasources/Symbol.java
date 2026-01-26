@@ -1,6 +1,6 @@
 package passwordutils.datasources;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 import passwordutils.datasources.Symbol;
 
@@ -35,7 +35,7 @@ public enum Symbol {
     QUESTION_MARK(27, "?"),
     SLASH(28, "/");
     
-    private static final Random RAND = new Random();
+    private static final SecureRandom RAND = new SecureRandom();
     private String symbol;
     private int key;
 
