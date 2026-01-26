@@ -1,18 +1,31 @@
-## Getting Started
+# PasswordUtils
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+### General details
 
-## Folder Structure
+> _PasswordUtils is a Java utility library focused on password generation and strength evaluation, based on entropy calculation and brute-force attack models commonly used in cryptographic security analysis._
+> 
+> _In the 1.0 version it has PassPhrassed utilities and PasswordGenerator, security tools from password entropy calculations and brute-force attack models commonly used in cryptographic security analysis._
 
-The workspace contains two folders by default, where:
+**Language used** ![Java](https://shields.io/badge/Java-red)
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+***Folder tree:***
+```
+📂passwordutils
+ ┣ 📂datasources
+ ┃ ┣ 📄Dictionary.java
+ ┃ ┣ 📄LowerCaseLetter.java
+ ┃ ┣ 📄Symbol.java
+ ┃ ┣ 📄UpperCaseLetter.java
+ ┣ 📂generators
+ ┃  ┣ 📄PassPhrassedGenerator.java
+ ┃  ┣ 📄PasswordGenerator.java
+ ┣ 📂analysis
+ ┃ ┣ 📄PassSecurityTools.java
+ ┣ 📄TimeUtils.java
+```
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+***Instalation***:
+------------
+The instalation of that API is througth a .jar file named passwordutils.jar.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+--Imagen de la vaina
