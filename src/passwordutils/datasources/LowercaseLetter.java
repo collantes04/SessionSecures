@@ -1,6 +1,8 @@
-package passwordutils.generators;
+package passwordutils.datasources;
 
 import java.util.Random;
+
+import passwordutils.datasources.LowercaseLetter;
 
 public enum LowercaseLetter {
     a(0, "a"),

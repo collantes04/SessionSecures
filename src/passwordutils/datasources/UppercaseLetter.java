@@ -1,6 +1,8 @@
-package passwordutils.generators;
+package passwordutils.datasources;
 
 import java.util.Random;
+
+import passwordutils.datasources.UppercaseLetter;
 
 public enum UppercaseLetter {
     A(0, "A"),

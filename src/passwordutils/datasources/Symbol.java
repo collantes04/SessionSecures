@@ -1,6 +1,8 @@
-package passwordutils.generators;
+package passwordutils.datasources;
 
 import java.util.Random;
+
+import passwordutils.datasources.Symbol;
 
 public enum Symbol {
     AT_SIGN(0, "@"),
