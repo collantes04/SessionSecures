@@ -20,8 +20,11 @@
  ┃  ┣ 📄PassPhrassedGenerator.java
  ┃  ┣ 📄PasswordGenerator.java
  ┣ 📂analysis
- ┃ ┣ 📄PassSecurityTools.java
+ ┃ ┣ 📄EntropyTools.java
+ ┃ ┣ 📄StrengthTools.java
  ┣ 📄TimeUtils.java
+ ┣ 📂crypto
+ ┃ ┣ 📄SaltManager.java
 ```
 
 ***Instalation***:
