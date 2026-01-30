@@ -24,7 +24,7 @@ public class EntropyTools {
 
         // tiempo esperado
         combinations = combinations.divide(BigDecimal.valueOf(2), RoundingMode.HALF_UP);
-
+        System.out.println("hola");
         return combinations.divide(ATACK_ATTEMPTS, RoundingMode.HALF_UP); // segundos
     }
 
