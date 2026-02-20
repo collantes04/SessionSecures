@@ -25,6 +25,6 @@ public class HashResult {
 
     @Override
     public String toString() {
-        return "salt= "+ getSalt() + "hash = " + getHash() + "iterations = "+this.iterations;
+        return "salt= "+ getSalt() + "\nhash = " + getHash() + "\niterations = "+this.iterations;
     }
 }
