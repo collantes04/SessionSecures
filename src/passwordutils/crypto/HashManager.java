@@ -69,9 +69,8 @@ public class HashManager {
         SecretKeyFactory sf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
         byte[] testHash = sf.generateSecret(spec).getEncoded();
         
-        String b64Hash = Base64.getEncoder().encodeToString(testHash); 
-        //we use the B64 encoded hash to compare if password is the same 
+        //Compare the saved hash with the newly calculated hash securely against timing attacks.
+        return java.security.MessageDigest.isEqual(rawHash, testHash);
 
-        return b64Hash.equals(userPassSession.getHash());
     }
 }
