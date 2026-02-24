@@ -7,7 +7,7 @@ import java.util.Scanner;
 import passwordutils.crypto.HashManager;
 import passwordutils.generators.PasswordGenerator;
 
-public class Test {
+public class Main {
     public static void main(String[] args) {
         PasswordGenerator ps = new PasswordGenerator();
         Scanner sc = new Scanner(System.in);
