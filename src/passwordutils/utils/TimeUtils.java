@@ -1,4 +1,4 @@
-package passwordutils;
+package passwordutils.utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,4 +1,4 @@
-package passwordutils;
+package passwordutils.demo;
 
 import passwordutils.crypto.HashManager;
 import passwordutils.crypto.HashResult;

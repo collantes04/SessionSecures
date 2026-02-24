@@ -3,7 +3,7 @@ package passwordutils.analysis;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import passwordutils.TimeUtils;
+import passwordutils.utils.TimeUtils;
 
 public class EntropyTools {
     /*
