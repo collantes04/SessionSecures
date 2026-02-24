@@ -25,10 +25,11 @@ public class HashManager {
         SaltManager sm = new SaltManager();
         byte saltBytes[] = sm.generateSalt(32);
         int iterations = 200000;
+        char passwordChar[] = password.toCharArray();
 
         /*PBEKeySpec derive the key to 256 bits and the required iterations for more security */
-        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), saltBytes,iterations, 256);
-        Arrays.fill(password.toCharArray(), '\0'); //that cleans the array used in memory for more security
+        PBEKeySpec spec = new PBEKeySpec(passwordChar, saltBytes,iterations, 256);
+        Arrays.fill(passwordChar, '\0'); //that cleans the array used in memory for more security
         
         /*Execute the PBKDF2 algorithm with the encoded required*/
         SecretKeyFactory sf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
