@@ -27,13 +27,14 @@ public class Main {
 
 
         while (true) {
-             try {
-                    System.out.println("Username: ");
-                    String uname = sc.nextLine();
-                    System.out.println("Password: ");
-                    String pasname = sc.nextLine();
+            try {
+                System.out.println("Username: ");
+                String uname = sc.nextLine();
+                System.out.println("Password: ");
+                String pasname = sc.nextLine();
 
                 boolean state = false;
+
                 for (User actualUser : users.values()) {
                     
                     if (actualUser.getUsername().equals(uname) && 
@@ -41,7 +42,6 @@ public class Main {
                         state = true;
                         break;
                     } 
-
                    
                 }
                 
