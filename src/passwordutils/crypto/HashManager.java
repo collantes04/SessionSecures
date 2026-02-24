@@ -4,16 +4,15 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
-import java.util.Base64;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-public class HashManager {
+public final class HashManager {
     private final SecureRandom sr = new SecureRandom();
     
     /**
-     * Generates a Hash code for a password for first time and save in HashResult object.
+     * That static method generate a Hash code for a password for first time and save in HashResult object.
      *
      * @param password The password to be hashed.
      * @return A object HashResult
@@ -21,7 +20,7 @@ public class HashManager {
      * and throw InvalidKeySpecException
      */
 
-    public HashResult generateHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
+    public static HashResult generateHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
         SaltManager sm = new SaltManager();
         byte saltBytes[] = sm.generateSalt(32);
         int iterations = 200000;
@@ -43,7 +42,7 @@ public class HashManager {
     }
 
     /**
-     * That method verify if a login password matches with the hash previously generated
+     * That static method verify if a login password matches with the hash previously generated
      * by the password that params has been saved in the object HashResult.
      * 
      * @param password the password that has been entered in the login 
@@ -57,7 +56,7 @@ public class HashManager {
      * @throws InvalidKeySpecException
      */
 
-    public boolean hashVerify(String password, HashResult userPassSession) throws NoSuchAlgorithmException, InvalidKeySpecException{
+    public static boolean hashVerify(String password, HashResult userPassSession) throws NoSuchAlgorithmException, InvalidKeySpecException{
         byte[] rawSalt = userPassSession.getSaltArr();
         byte[] rawHash = userPassSession.getHashArr();
         int iterations = userPassSession.getIterations();
