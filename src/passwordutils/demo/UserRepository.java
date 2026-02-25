@@ -7,7 +7,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.HashMap;
 import java.util.Map;
 
-import passwordutils.analysis.StrengthUtils;
+import passwordutils.analysis.StrengthTools;
 
 public class UserRepository {
     private Map<String, User> userRepo = new HashMap<>();
@@ -30,7 +30,7 @@ public class UserRepository {
     }
 
     private User createUser(String username, String rawPassword) throws NoSuchAlgorithmException, InvalidKeySpecException{
-        StrengthUtils st = new StrengthUtils();
+        StrengthTools st = new StrengthTools();
         User us = new User();
         
         /*Here we controls the weakness of the password with the entropy tool

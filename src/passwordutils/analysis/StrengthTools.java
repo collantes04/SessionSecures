@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 
 import passwordutils.datasources.Symbol;
 
-public class StrengthUtils {
-    private final EntropyTools entropyTool = new EntropyTools();
+public class StrengthTools {
+    private final EntropyUtils entropyTool = new EntropyUtils();
 
 
     /**

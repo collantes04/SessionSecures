@@ -3,16 +3,16 @@ package passwordutils.demo;
 import java.util.Map;
 import java.util.Scanner;
 
-import passwordutils.analysis.StrengthUtils;
+import passwordutils.analysis.StrengthTools;
 import passwordutils.crypto.HashManager;
 import passwordutils.crypto.HashResult;
 
-public class Session {
+public class MainDemo {
 
     public static void main(String[] args) {
         UserRepository usRepo = new UserRepository();
         Map<String, User> repositoryBackup = usRepo.chargeUsers();
-        StrengthUtils st = new StrengthUtils();
+        StrengthTools st = new StrengthTools();
 
         User us = new User();
 
@@ -22,7 +22,7 @@ public class Session {
         while (true) {
             System.out.println();
             System.out.println("Welcome to demo class of SessionSecures");
-            System.out.println("Put . to end the demo execution");
+            System.out.println("Put '.' to end the demo execution");
             System.out.print("Username: ");
             String usename = scan.nextLine();
             if (usename.equals(".")) {

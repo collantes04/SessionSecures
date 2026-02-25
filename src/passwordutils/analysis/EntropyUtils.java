@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 
 import passwordutils.utils.TimeUtils;
 
-public class EntropyTools {
+public class EntropyUtils {
     /*
      * Attack attempts per second, the constant can be changed to cover the need for
      * calculating
