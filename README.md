@@ -20,11 +20,20 @@
  ┃  ┣ 📄PassPhrassedGenerator.java
  ┃  ┣ 📄PasswordGenerator.java
  ┣ 📂analysis
- ┃ ┣ 📄EntropyTools.java
+ ┃ ┣ 📄EntropyUtils.java
  ┃ ┣ 📄StrengthTools.java
- ┣ 📄TimeUtils.java
  ┣ 📂crypto
  ┃ ┣ 📄SaltManager.java
+ ┃ ┣ 📄HashResult.java
+ ┃ ┣ 📄HashManager.java
+ ┣ 📂crypto
+ ┃ ┣ 📄MainDemo.java
+ ┃ ┣ 📄User.java
+ ┃ ┣ 📄UserRepository.java
+ ┃ ┣ 📄userRepLoad.csv
+ ┣ 📂utils
+ ┃ ┣ 📄TimeUtils.java
+
 ```
 
 ***Instalation***:
