@@ -7,7 +7,7 @@ import passwordutils.utils.TimeUtils;
 
 
 /**
- * That the EntropyUtils used for calculated entropy
+ * The class that StrengtTools uses to calculate
  * @author Jose A. Sánchez
  * @version 1.0
  */
