@@ -6,6 +6,8 @@ import java.util.Base64;
  * That object saves hash, salt and iterations of a previously encoded 
  * password with HashManager. That object can will be integrate in a user object
  * to facilitate the login security protocol
+ * @author Jose A. Sánchez
+ * @version 1.0
  */
 
 public class HashResult {

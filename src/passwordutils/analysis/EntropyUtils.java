@@ -5,6 +5,12 @@ import java.math.RoundingMode;
 
 import passwordutils.utils.TimeUtils;
 
+
+/**
+ * That the EntropyUtils used for calculated entropy
+ * @author Jose A. Sánchez
+ * @version 1.0
+ */
 public class EntropyUtils {
     /*
      * Attack attempts per second, the constant can be changed to cover the need for

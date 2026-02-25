@@ -7,55 +7,27 @@ import passwordutils.datasources.LowercaseLetter;
 import passwordutils.datasources.Symbol;
 import passwordutils.datasources.UppercaseLetter;
 
-public class PasswordGenerator implements InterfaceRandGen{
-    
-    public String generatorPassword(){
 
+/**
+ * Generates a alphanumeric password
+ * @apiNote The len must be between 16 and 40 characters
+ * @author Jose A. Sánchez
+ * @version 1.0
+ */
+public class PasswordGenerator implements InterfaceRandGen{
+    private SecureRandom rand = new SecureRandom();
+
+    
     /**
      * This method generates a random password
      * from any parameter beacause is a random length and returns the password
      * the limits of length are [16, 40] characters, 16 is the secure min and
      * 40 is a good max limit of lenght.
      */
-
-        SecureRandom rand = new SecureRandom();
-        int election;
-        int len = rand.nextInt(25)+16;
-        String password = "";
-        long cont = 0;
-
-        while (cont != len) {
-            election = rand.nextInt(4);
-            switch (election) {
-                case 0:
-                    //symbols
-                    password += Symbol.retSymbol();
-                    break;
-
-                case 1:
-                //numbers
-                    password += rand.nextInt(10);
-                    break;
-
-                case 2:
-                //uppercase
-                    password += UppercaseLetter.upperRet();
-                    break;
-
-                case 3:
-                //lowercase
-                    password += LowercaseLetter.lowerRet();
-                    break;
-
-                default:
-
-                break;
-            }
-            cont++;
-        }
-
-
-        return password;
+    @Override
+    public String generatorPassword(){
+        int randomLen = rand.nextInt(25)+16;
+        return generatorPassword(randomLen);
     }
 
     /**
@@ -66,6 +38,7 @@ public class PasswordGenerator implements InterfaceRandGen{
      * @throws IllegalArgumentException if the length is negative or less than eight
      */
 
+    @Override
     public String generatorPassword(long len){
         
         if (len < 8) {

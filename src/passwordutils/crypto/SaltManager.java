@@ -2,6 +2,11 @@ package passwordutils.crypto;
 
 import java.security.SecureRandom;
 
+/**
+ * Utility class for generating secure Salts for mix with the password to be hashed
+ * @author Jose A. Sánchez
+ * @version 1.0
+ */
 public class SaltManager {
     protected final SecureRandom sr = new SecureRandom();
     /**

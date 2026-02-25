@@ -1,12 +1,20 @@
 package passwordutils.analysis;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 
 import passwordutils.datasources.Symbol;
 
+
+/**
+ * Tools for evaluate the Strength and Entropy of a password
+ * @author Jose A. Sánchez
+ * @version 1.0
+ */
 public class StrengthTools {
     private final EntropyUtils entropyTool = new EntropyUtils();
 
@@ -56,6 +64,9 @@ public class StrengthTools {
      *         "Low security" if entropy is less than 36 bits,
      *         "Medium security" if entropy is between 36 and 59 bits (inclusive),
      *         or "High security" if entropy is 60 bits or more.
+     * 
+     * @apiNote that method is for a visualization mode of entropy, is not
+     * a real util method for evaluates, only for visualization
      */
     public String entropyScale(String password){
         BigDecimal entropy = entropyTool.bitEntropy(password);
@@ -86,7 +97,7 @@ public class StrengthTools {
      *         "Medium security" if entropy is between 36 and 59 bits (inclusive) it returns character 0,
      *         or "High security" if entropy is 60 bits or more it return character 1.
      * 
-     * This utility indicates the entropy of a password based on a char value,
+     * @apiNote This utility indicates the entropy of a password based on a char value,
      *  which is most useful for use in custom password validation systems.
      */
     public int entropyScaleUtil(String password){
@@ -105,19 +116,37 @@ public class StrengthTools {
     }
 
 
+    /**
+     * 
+     * @param password password to look
+     * @return false if the password is not weak, true if the password is in the log of weak
+     * and common passwords
+     * 
+     * @apiNote that method is a detector of most common or silly passwords, that method
+     * reads passwords.txt and detect passwords like 1234 etc.
+     */
     public boolean isLeaked(String password) {
-        String url = "src/passwordutils/datasources/passwords.txt";
-        String line = "";
+
+        String path = "/passwordutils/datasources/passwords.txt";
         boolean state = false;
 
-        try(BufferedReader br = new BufferedReader(new FileReader(url))) {
+        try (InputStream is = getClass().getResourceAsStream(path);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+            
+            if (is == null) {
+                System.err.println("Error: No se encontró el archivo de contraseñas en: " + path);
+                return false;
+            }
+
+            String line;
             while ((line = br.readLine()) != null) {
-                if (password.equals(line)) {
+                if (password.equals(line.trim())) { // .trim() por si hay espacios extra o saltos de línea
                     state = true;
+                    break;
                 }
             }
-        } catch (IOException e) {
-           System.err.println(e.getMessage());
+        } catch (IOException | NullPointerException e) {
+            System.err.println("Error al acceder a la base de datos de contraseñas: " + e.getMessage());
         }
 
         return state;

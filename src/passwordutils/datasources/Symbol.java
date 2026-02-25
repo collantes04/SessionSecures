@@ -4,6 +4,11 @@ import java.security.SecureRandom;
 
 import passwordutils.datasources.Symbol;
 
+/**
+ * Symbol util for password generator
+ * @author Jose A. Sánchez
+ * @version 1.0
+ */
 public enum Symbol {
     AT_SIGN(0, "@"),
     EXCLAMATION_MARK(1, "!"),

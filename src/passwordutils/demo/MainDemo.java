@@ -7,6 +7,14 @@ import passwordutils.analysis.StrengthTools;
 import passwordutils.crypto.HashManager;
 import passwordutils.crypto.HashResult;
 
+
+/**
+ * Excutable for the demo of crypto sources and analysis sources
+ * applicated for a session login (with a local repository) and
+ * a session register (looks the entropy of a password for create a user or not)
+ * @author Jose A. Sánchez
+ * @version 1.0
+ */
 public class MainDemo {
 
     public static void main(String[] args) {

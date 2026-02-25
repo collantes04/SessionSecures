@@ -3,7 +3,11 @@ package passwordutils.utils;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-
+/**
+ * Time util for time calculating
+ * @author Jose A. Sánchez
+ * @version 1.0
+ */
 public final class TimeUtils {
 
     /**

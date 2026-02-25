@@ -8,6 +8,20 @@ import java.util.Arrays;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
+/** Utility class for secure password hashing.
+* This class implements the PBKDF2 algorithm with HMAC-SHA256, providing
+* a robust security layer against brute-force and dictionary attacks.
+* The recommended workflow is:
+* 1. Registration: Use generateHash to obtain a HashResult object and save it.
+* 2. Login: Use hashVerify, passing the attempted password and the retrieved object.
+* Security features included:
+* - Random 32-byte salts.
+* - 200,000 iterations by default
+* - Constant-time hash comparison to prevent timing attacks
+* - Cleanup of character arrays in memory after use.
+* @author Jose A. Sánchez
+* @version 1.0
+ */
 public final class HashManager {
     private final SecureRandom sr = new SecureRandom();
     

@@ -4,6 +4,11 @@ import java.security.SecureRandom;
 
 import passwordutils.datasources.LowercaseLetter;
 
+/**
+ * Lowercase util for password generator
+ * @author Jose A. Sánchez
+ * @version 1.0
+ */
 public enum LowercaseLetter {
     a(0, "a"),
     b(1, "b"),

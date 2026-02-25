@@ -4,6 +4,11 @@ import java.security.SecureRandom;
 
 import passwordutils.datasources.UppercaseLetter;
 
+/**
+ * Uppercase util for password generator
+ * @author Jose A. Sánchez
+ * @version 1.0
+ */
 public enum UppercaseLetter {
     A(0, "A"),
     B(1, "B"),
