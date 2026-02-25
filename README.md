@@ -62,4 +62,6 @@ Add the file to your IDE's Build Path:
 **VSCode**: Open the Java view: In the left sidebar of VS Code, look for the coffee cup icon or expand the "Java Projects" section at the bottom of the file browser. Locate Referenced Libraries: Look for the folder called "Referenced Libraries." Add the JAR: Click the + (Plus) icon to the right of "Referenced Libraries." Select File: Locate your .jar file in your file browser and click "Select JAR Libraries."
 
 
+# Documentation 
+
 
