@@ -3,7 +3,7 @@ package passwordutils.demo;
 import java.util.Map;
 import java.util.Scanner;
 
-import passwordutils.analysis.StrengthTools;
+import passwordutils.analysis.StrengthUtils;
 import passwordutils.crypto.HashManager;
 import passwordutils.crypto.HashResult;
 
@@ -12,7 +12,7 @@ public class Session {
     public static void main(String[] args) {
         UserRepository usRepo = new UserRepository();
         Map<String, User> repositoryBackup = usRepo.chargeUsers();
-        StrengthTools st = new StrengthTools();
+        StrengthUtils st = new StrengthUtils();
 
         User us = new User();
 
@@ -20,6 +20,10 @@ public class Session {
         Scanner scan = new Scanner(System.in);
 
         while (true) {
+            System.out.println();
+            System.out.println("Welcome to demo class of SessionSecures");
+            System.out.println("Put . to end the demo execution");
+            System.out.print("Username: ");
             String usename = scan.nextLine();
             if (usename.equals(".")) {
                 break;
