@@ -4,7 +4,7 @@
 
 > _PasswordUtils is a Java utility library focused on password generation and strength evaluation, based on entropy calculation and brute-force attack models commonly used in cryptographic security analysis._
 > 
-> _In the 1.0 version it has PassPhrassed utilities and PasswordGenerator, security tools from password entropy calculations and brute-force attack models commonly used in cryptographic security analysis._
+> _In the 1.0 version it has PassPhrassed utilities and PasswordGenerator, security tools from password entropy calculations and brute-force attack models commonly used in cryptographic security analysis. That library is for use in log-in and register session control._
 
 **Language used** ![Java](https://shields.io/badge/Java-red)
 
