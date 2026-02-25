@@ -7,7 +7,7 @@ import passwordutils.utils.TimeUtils;
 
 
 /**
- * The class that StrengtTools uses to calculate
+ * The class that StrengtTools uses to calculate.
  * @author Jose A. Sánchez
  * @version 1.0
  */
