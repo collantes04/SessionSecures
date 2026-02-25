@@ -16,11 +16,20 @@ public class User {
         }
     }
 
+    public User(){
+        
+    }
+
     public HashResult getPassword() {
         return password;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public String toString() {
+        return "Username: " + getUsername() + "\n" + "Password: " + getPassword().getHash();
     }
 }
